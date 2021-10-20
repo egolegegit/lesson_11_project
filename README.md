@@ -4,7 +4,7 @@
 
 Цель урока:
 
-> -   Изучим хуки useRef, useMemo, useCallback
+-   Изучим хуки useRef, useMemo, useCallback
 
 > -   Поймем, что такое компоненты высшего порядка (Higher-Order Components, HOC)
 
