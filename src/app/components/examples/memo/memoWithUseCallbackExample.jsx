@@ -13,13 +13,14 @@ const LogOutButton = ({ onLogOut }) => {
     );
 };
 
-const MemoizedLogOutButton = React.memo(
-    LogOutButton,
-    (prevProps, nextProps) => {
-        if (prevProps !== nextProps) return true;
+function areEqual(prevState, nextState) {
+    if (prevState.onLogOut !== nextState.onLogOut) {
         return false;
     }
-);
+    return true;
+}
+
+const MemoizedLogOutButton = React.memo(LogOutButton, areEqual);
 
 const MemoWithUseCallbackExample = (props) => {
     const [state, setState] = useState(false);
