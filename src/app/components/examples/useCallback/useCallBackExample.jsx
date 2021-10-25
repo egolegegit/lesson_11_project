@@ -6,6 +6,7 @@ const UseCallBackExample = () => {
     const [data, setData] = useState({});
     const withOutCallback = useRef(0);
     const withCallback = useRef(0);
+
     const handleChange = ({ target }) => {
         setData((prevState) => ({ ...prevState, [target.name]: target.value }));
     };
