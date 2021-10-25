@@ -20,7 +20,7 @@ const UseRefExample = () => {
                         <code>.current</code> которого инициализируется
                         переданным аргументом <code>(initialValue)</code>.
                         Возвращённый объект будет сохраняться в течение всего
-                        времени жизни компонента
+                        времени жизни компонента.
                     </p>
 
                     <figcaption className="blockquote-footer">

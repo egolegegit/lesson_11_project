@@ -1,8 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import CardWrapper from "../../common/Card";
-import SmallTitle from "../../common/typografy/smallTitle";
 import Divider from "../../common/divider";
-
+import SmallTitle from "../../common/typografy/smallTitle";
 const PrevStateExample = () => {
     const prevState = useRef("");
     const [otherState, setOtherState] = useState("false");
@@ -11,7 +10,6 @@ const PrevStateExample = () => {
             prevState === "false" ? "true" : "false"
         );
     };
-
     useEffect(() => {
         prevState.current = otherState;
     }, [otherState]);
@@ -19,8 +17,8 @@ const PrevStateExample = () => {
         <CardWrapper>
             <SmallTitle>Предыдущее состояние</SmallTitle>
             <Divider />
-            <p>prev state: {prevState.current}</p>
-            <p>current state: {otherState}</p>
+            <p>prev State:{prevState.current}</p>
+            <p>Current State:{otherState}</p>
             <button className="btn btn-primary" onClick={toggleOtherState}>
                 Toggle other state
             </button>

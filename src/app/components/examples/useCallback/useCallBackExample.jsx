@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import CardWrapper from "../../common/Card";
 import SmallTitle from "../../common/typografy/smallTitle";
 
@@ -11,17 +11,21 @@ const UseCallBackExample = () => {
         setData((prevState) => ({ ...prevState, [target.name]: target.value }));
     };
 
+    // Without Callback
     const validateWithOutCallback = (data) => {
         console.log(data);
     };
+    useEffect(() => {
+        withOutCallback.current++;
+    }, [validateWithOutCallback]);
 
-    useEffect(() => withOutCallback.current++, [validateWithOutCallback]);
-
+    // With Callback
     const validateWithCallback = useCallback((data) => {
         console.log(data);
     }, []);
-
-    useEffect(() => withCallback.current++, [validateWithCallback]);
+    useEffect(() => {
+        withCallback.current++;
+    }, [validateWithCallback]);
 
     useEffect(() => {
         validateWithOutCallback(data);
@@ -31,14 +35,14 @@ const UseCallBackExample = () => {
     return (
         <CardWrapper>
             <SmallTitle>Example</SmallTitle>
-            <p>Render result callback :{withOutCallback.current}</p>
-            <p>Render result callback :{withCallback.current}</p>
+            <p> Render withOutCallback: {withOutCallback.current}</p>
+            <p> Render withCallback: {withCallback.current}</p>
             <label htmlFor="email" className="form-label">
                 Email
             </label>
             <input
                 type="email"
-                className="mb-4 form-control w-50"
+                className="form-control"
                 id="email"
                 value={data.email || ""}
                 name="email"

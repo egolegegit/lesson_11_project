@@ -68,7 +68,7 @@ const MemoExample = () => {
                 <SmallTitle>Memo dependency function</SmallTitle>
                 <CardWrapper>
                     <i className="bi bi-lightbulb"></i> Если функция для сверки
-                    не задана то выполнятеся поверхностная сверка по{" "}
+                    не задана, то выполняется поверхностная сверка по{" "}
                     <Link
                         to={{
                             pathname:
