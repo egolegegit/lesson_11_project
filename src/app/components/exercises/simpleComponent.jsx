@@ -1,14 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-const SimpleComponent = (props) => {
-  console.log(props);
-    const onLogin = () => {
-        console.log("login");
-    };
-
-    const onLogOut = () => {
-        console.log("logout");
-    };
+const SimpleComponent = ({ isAuth, onLogin, onLogOut }) => {
+    console.log(isAuth);
 
     return (
         <>
@@ -20,6 +14,12 @@ const SimpleComponent = (props) => {
             </button>
         </>
     );
+};
+
+SimpleComponent.propTypes = {
+    isAuth: PropTypes.bool,
+    onLogin: PropTypes.func,
+    onLogOut: PropTypes.func
 };
 
 export default SimpleComponent;

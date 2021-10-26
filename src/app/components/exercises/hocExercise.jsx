@@ -1,10 +1,19 @@
 import React from "react";
 import CollapseWrapper from "../common/collapse";
-import CardWrapper from "../common/Card";
-
+import withCardStyles from "./withCardStyles";
 import SimpleComponent from "./simpleComponent";
 
 const HocExercise = () => {
+    const MySimpleComponent = withCardStyles(SimpleComponent);
+
+    const onLogin = () => {
+        console.log("login");
+    };
+
+    const onLogOut = () => {
+        console.log("logout");
+    };
+
     return (
         <>
             <CollapseWrapper title="Упражнение">
@@ -52,9 +61,11 @@ const HocExercise = () => {
                     </li>
                 </ul>
             </CollapseWrapper>
-            <CardWrapper>
-                <SimpleComponent isAuth={true} onLogin={""} onLogOut={""} />
-            </CardWrapper>
+            <MySimpleComponent
+                isAuth={true}
+                onLogin={onLogin}
+                onLogOut={onLogOut}
+            />
         </>
     );
 };
