@@ -9,13 +9,11 @@ const HocExercise = () => {
     const MySimpleComponent = withCardStyles(SimpleComponent);
 
     const onLogin = () => {
-        console.log("login");
         localStorage.setItem("user", JSON.stringify("user"));
         setIsAuth(true);
     };
 
     const onLogOut = () => {
-        console.log("logout");
         localStorage.removeItem("user");
         setIsAuth(false);
     };

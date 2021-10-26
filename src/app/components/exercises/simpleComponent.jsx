@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 import Button from "./button";
 
 const SimpleComponent = ({ isAuth, onLogin, onLogOut }) => {
-    console.log(isAuth);
-
     return (
         <>
             {isAuth ? (
