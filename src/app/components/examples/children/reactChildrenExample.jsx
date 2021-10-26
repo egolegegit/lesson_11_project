@@ -24,12 +24,14 @@ const FormComponent = ({ children }) => {
         return React.cloneElement(child, config);
     });
 };
+
 FormComponent.propTypes = {
     children: PropTypes.oneOfType([
         PropTypes.arrayOf(PropTypes.node),
         PropTypes.node
     ])
 };
+
 const ReactChildrenExample = () => {
     return (
         <CardWrapper>
