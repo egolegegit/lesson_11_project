@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import CollapseWrapper from "../common/collapse";
 import withCardStyles from "./withCardStyles";
 import SimpleComponent from "./simpleComponent";
 
 const HocExercise = () => {
+    const [isAuth, setIsAuth] = useState(!!localStorage.getItem("user"));
+
     const MySimpleComponent = withCardStyles(SimpleComponent);
 
     const onLogin = () => {
         console.log("login");
+        localStorage.setItem("user", JSON.stringify("user"));
+        setIsAuth(true);
     };
 
     const onLogOut = () => {
         console.log("logout");
+        localStorage.removeItem("user");
+        setIsAuth(false);
     };
 
     return (
@@ -62,7 +68,7 @@ const HocExercise = () => {
                 </ul>
             </CollapseWrapper>
             <MySimpleComponent
-                isAuth={true}
+                isAuth={isAuth}
                 onLogin={onLogin}
                 onLogOut={onLogOut}
             />

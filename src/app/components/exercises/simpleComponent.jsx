@@ -1,17 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Button from "./button";
 
 const SimpleComponent = ({ isAuth, onLogin, onLogOut }) => {
     console.log(isAuth);
 
     return (
         <>
-            <button className="btn btn-primary me-3" onClick={onLogin}>
-                Войти
-            </button>
-            <button className="btn btn-secondary" onClick={onLogOut}>
-                Выйти из системы
-            </button>
+            {isAuth ? (
+                <Button
+                    className="btn btn-secondary"
+                    onClick={onLogOut}
+                    name={"Выйти из системы"}
+                />
+            ) : (
+                <Button
+                    className="btn btn-primary me-3"
+                    onClick={onLogin}
+                    name={"Войти"}
+                />
+            )}
         </>
     );
 };
