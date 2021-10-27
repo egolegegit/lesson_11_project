@@ -12,12 +12,9 @@ const EditUserPage = () => {
     const [data, setData] = useState({
         email: "",
         password: "",
-        profession: "",
-        sex: "male",
-        qualities: []
+        profession: ""
     });
     const [professions, setProfession] = useState([]);
-    const [qualities, setQualities] = useState({});
     const [errors, setErrors] = useState({});
     const getProfessionById = (id) => {
         for (const prof in professions) {
@@ -25,28 +22,16 @@ const EditUserPage = () => {
             if (profData._id === id) return profData;
         }
     };
-    const getQualities = (elements) => {
-        const qualitiesQrray = [];
-        for (const elem of elements) {
-            for (const qualy in qualities) {
-                if (elem.value === qualities[qualy]._id) {
-                    qualitiesQrray.push(qualities[qualy]);
-                }
-            }
-        }
-        return qualitiesQrray;
-    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const isValid = validate();
         if (!isValid) return;
-        const { profession, qualities } = data;
+        const { profession } = data;
         api.users
             .update(userId, {
                 ...data,
-                profession: getProfessionById(profession),
-                qualities: getQualities(qualities)
+                profession: getProfessionById(profession)
             })
             .then((data) => history.push(`/users/${data._id}`));
         console.log(data);
@@ -60,14 +45,13 @@ const EditUserPage = () => {
                 profession: profession._id
             }))
         );
-        api.qualities.fetchAll().then((data) => setQualities(data));
         api.professions.fetchAll().then((data) => setProfession(data));
     }, []);
     useEffect(() => {
         if (data._id) setIsLoading(false);
     }, [data]);
 
-    const validatorConfog = {
+    const validatorConfig = {
         email: {
             isRequired: {
                 message: "Электронная почта обязательна для заполнения"
@@ -83,19 +67,24 @@ const EditUserPage = () => {
             }
         }
     };
+
     useEffect(() => validate(), [data]);
+
     const handleChange = (target) => {
         setData((prevState) => ({
             ...prevState,
             [target.name]: target.value
         }));
     };
+
     const validate = () => {
-        const errors = validator(data, validatorConfog);
+        const errors = validator(data, validatorConfig);
         setErrors(errors);
         return Object.keys(errors).length === 0;
     };
+
     const isValid = Object.keys(errors).length === 0;
+
     return (
         <div className="container mt-5">
             <div className="row">
