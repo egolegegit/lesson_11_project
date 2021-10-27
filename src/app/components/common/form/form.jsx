@@ -46,6 +46,13 @@ const FormComponent = ({
         let config;
         const childType = typeof child.type;
         if (childType === "function") {
+            if (!child.props.name) {
+                throw new Error(
+                    "Name property is required for field component",
+                    child
+                );
+            }
+
             config = {
                 ...child.props,
                 onChange: handleChange,
