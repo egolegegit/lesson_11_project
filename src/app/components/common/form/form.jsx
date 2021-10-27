@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 import { validator } from "../../../utils/validator";
 
@@ -11,12 +11,15 @@ const FormComponent = ({
     const [data, setData] = useState(defaultData || {});
     const [errors, setErrors] = useState({});
 
-    const handleChange = (target) => {
-        setData((prevState) => ({
-            ...prevState,
-            [target.name]: target.value
-        }));
-    };
+    const handleChange = useCallback(
+        (target) => {
+            setData((prevState) => ({
+                ...prevState,
+                [target.name]: target.value
+            }));
+        },
+        [setData]
+    );
 
     const validate = () => {
         const errors = validator(data, validatorConfig);
@@ -44,9 +47,9 @@ const FormComponent = ({
     const isValid = Object.keys(errors).length === 0;
 
     const clonedElements = React.Children.map(children, (child) => {
-        let config;
+        let config = {};
         const childType = typeof child.type;
-        if (childType === "function") {
+        if (childType === "object") {
             if (!child.props.name) {
                 throw new Error(
                     "Name property is required for field component",
