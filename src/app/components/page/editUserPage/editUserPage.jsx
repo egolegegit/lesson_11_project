@@ -69,6 +69,7 @@ const EditUserPage = () => {
                 <div className="p-4 shadow col-md-6 offset-md-3">
                     {!isLoading && Object.keys(professions).length > 0 ? (
                         <FormComponent
+                            defaultData={data}
                             onSubmit={handleSubmit}
                             validatorConfig={validatorConfig}
                         >
