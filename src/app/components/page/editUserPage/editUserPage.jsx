@@ -29,7 +29,6 @@ const EditUserPage = () => {
                 profession: getProfessionById(profession)
             })
             .then((data) => history.push(`/users/${data._id}`));
-        console.log(data);
     };
     useEffect(() => {
         setIsLoading(true);
@@ -73,7 +72,7 @@ const EditUserPage = () => {
                             onSubmit={handleSubmit}
                             validatorConfig={validatorConfig}
                         >
-                            <TextField label="Имя" name="name" />
+                            <TextField label="Имя" name="name" autoFocus/>
                             <TextField label="Электронная почта" name="email" />
                             <SelectField
                                 label="Выбери свою профессию"
