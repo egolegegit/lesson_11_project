@@ -27,6 +27,7 @@ const FormComponent = ({
     const handleSubmit = (e) => {
         e.preventDefault();
         const isValid = validate();
+
         if (!isValid) {
             return;
         }
